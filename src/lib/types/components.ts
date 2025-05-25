@@ -606,6 +606,33 @@ export interface EdgePanelProps extends BaseComponentProps {
   closeOnEscape?: boolean;
 }
 
+
+/**
+ * EmptyState component properties
+ */
+export interface EmptyStateProps extends BaseComponentProps {
+  /**
+   * Optional icon or illustration to display
+   */
+  icon?: React.ReactNode;
+
+  /**
+   * Main title or heading for the empty state
+   */
+  title: string;
+
+  /**
+   * Optional description or supporting text
+   */
+  description?: string;
+
+  /**
+   * Optional action element (e.g., button)
+   */
+  action?: React.ReactNode;
+}
+
+
 /**
  * DataTable column definition
  */
