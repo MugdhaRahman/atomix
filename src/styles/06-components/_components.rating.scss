@@ -4,6 +4,7 @@
 @use '../01-settings/settings.rating' as rating;
 @use '../02-tools/tools.rem' as rem;
 @use '../02-tools/tools.size' as size;
+@use '../02-tools/tools.breakpoints' as *;
 @use '../02-tools/tools.grid' as *;
 
 .c-rating {
@@ -29,16 +30,17 @@
   align-items: center;
   position: relative;
 
-  &[data-readonly="false"] {
+  &[data-readonly='false'] {
     cursor: pointer;
 
     #{$root}__star {
       transition: var(--#{config.$prefix}rating-star-transition);
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         transform: scale(var(--#{config.$prefix}rating-star-hover-scale));
       }
-      
+
       &:focus-visible {
         outline: 2px solid var(--#{config.$prefix}primary);
         outline-offset: 2px;
@@ -76,7 +78,7 @@
         --#{config.$prefix}rating-star-bg: #{$value};
       }
     }
-    
+
     // Focused state
     &--focused {
       outline: 2px solid var(--#{config.$prefix}primary);
@@ -91,22 +93,22 @@
     fill: var(--#{config.$prefix}rating-star-empty-color);
     stroke-width: 1px;
   }
-  
+
   // Full star styles
   &__star-full {
     fill: var(--#{config.$prefix}rating-star-bg);
     display: none;
-    
+
     #{$root}__star--full & {
       display: block;
     }
   }
-  
+
   // Half-star styles
   &__star-half {
     fill: var(--#{config.$prefix}rating-star-bg);
     display: none;
-    
+
     #{$root}__star--half & {
       display: block;
     }

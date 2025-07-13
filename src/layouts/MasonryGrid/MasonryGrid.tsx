@@ -1,4 +1,17 @@
-import React, { forwardRef, HTMLAttributes, ReactNode, useEffect, useImperativeHandle, useRef, useState, useCallback, useMemo, Children, cloneElement, isValidElement } from 'react';
+import React, {
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+  Children,
+  cloneElement,
+  isValidElement,
+} from 'react';
 // Import styles for scoped CSS modules
 
 export interface MasonryGridProps extends HTMLAttributes<HTMLDivElement> {
@@ -67,7 +80,7 @@ interface ItemPosition {
 interface MasonryItemData {
   element: React.ReactElement;
   position: ItemPosition | null;
-  ref: React.RefObject<HTMLDivElement>;
+  ref: React.RefObject<HTMLDivElement | null>;
   id: string;
   imageLoaded?: boolean;
 }
@@ -121,7 +134,6 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
       if (imagesLoaded) setLoadingImages(true);
       else setLoadingImages(false);
     }, [columns, imagesLoaded]);
-
 
     // Types
     type MasonryImageElement = HTMLImageElement & {
@@ -190,12 +202,9 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
           });
         });
         onImageLoad?.(imagesLoadedCount.current, totalImagesCount.current);
-    
+
         // If all images have loaded, update loading state and complete layout
-        if (
-          imagesLoadedCount.current >= totalImagesCount.current &&
-          totalImagesCount.current > 0
-        ) {
+        if (imagesLoadedCount.current >= totalImagesCount.current && totalImagesCount.current > 0) {
           setLayoutComplete(true);
           setLoadingImages(false); // This ensures the loading class is removed *immediately* after images load
           // Force a double requestAnimationFrame for final layout calculation after all images are loaded (guarantees DOM paint)
@@ -213,7 +222,7 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
     );
 
     const trackImages = useCallback(() => {
-      if (!imagesLoaded || !containerRef.current) return;
+      if (!imagesLoaded || !containerRef.current) return undefined;
       imageElements.current.clear();
       imagesLoadedCount.current = 0;
       const images = containerRef.current.querySelectorAll('img');
@@ -222,10 +231,10 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
         setLayoutComplete(true);
         setLoadingImages(false);
         onLayoutComplete?.();
-        return;
+        return undefined;
       }
       setLoadingImages(true);
-      images.forEach((img) => {
+      images.forEach(img => {
         const masonryImg = img as MasonryImageElement;
         const itemElement = img.closest('.o-masonry-grid > div');
         if (itemElement) {
@@ -242,7 +251,7 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
       });
       // Cleanup
       return () => {
-        images.forEach((img) => {
+        images.forEach(img => {
           const masonryImg = img as MasonryImageElement;
           if (masonryImg._masonryLoadHandler) {
             img.removeEventListener('load', masonryImg._masonryLoadHandler);
@@ -263,11 +272,9 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
       items.forEach((item, index) => {
         if (item.ref.current) {
           // Find the shortest column
-          const shortestCol = columnHeights.current.indexOf(
-            Math.min(...columnHeights.current)
-          );
+          const shortestCol = columnHeights.current.indexOf(Math.min(...columnHeights.current));
           const left = shortestCol * (colWidth + gap);
-          const top = columnHeights.current[shortestCol];
+          const top = columnHeights.current[shortestCol] ?? 0;
           const height = item.ref.current.offsetHeight;
           columnHeights.current[shortestCol] = top + height + gap;
           newPositions[index] = {
@@ -283,8 +290,8 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
 
     // === OBSERVE CONTAINER RESIZE ===
     useEffect(() => {
-      if (!containerRef.current) return;
-      let animationFrame: number | null = null;
+      if (!containerRef.current) return undefined;
+      let animationFrame: ReturnType<typeof requestAnimationFrame> | null = null;
       const observer = new ResizeObserver(() => {
         if (animationFrame) cancelAnimationFrame(animationFrame);
         animationFrame = requestAnimationFrame(() => calculateLayout());
@@ -305,16 +312,16 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
         calculateLayout();
         setLayoutComplete(true);
         setLoadingImages(false);
+        return undefined;
       }
       // Only reset layoutComplete when items or columns change
-      // eslint-disable-next-line
     }, [items, columns, calculateLayout, imagesLoaded, trackImages]);
 
     // === NEW: Add ResizeObservers to all grid items for bulletproof image+content measurement ===
     React.useEffect(() => {
       // Clean up old observers if items ever change
       const observers: ResizeObserver[] = [];
-      items.forEach((item) => {
+      items.forEach(item => {
         if (item.ref.current) {
           const obs = new ResizeObserver(() => {
             // Double rAF: ensures layout only runs after DOM/paint/async renders
@@ -329,7 +336,7 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
         }
       });
       return () => {
-        observers.forEach((obs) => obs.disconnect());
+        observers.forEach(obs => obs.disconnect());
       };
     }, [items, calculateLayout]);
 
@@ -337,9 +344,7 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
 
     // === DETERMINE CONTAINER HEIGHT ===
     const containerHeight =
-      columnHeights.current.length > 0
-        ? Math.max(...columnHeights.current)
-        : 0;
+      columnHeights.current.length > 0 ? Math.max(...columnHeights.current) : 0;
 
     // === DETERMINE CLASSES ===
     const classes = [
@@ -352,8 +357,6 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
       .join(' ');
 
     // === RENDER ===
-
-
 
     return (
       <div
@@ -371,11 +374,7 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
           const position = positions[index];
           if (!position) {
             return (
-              <div
-                key={item.id}
-                ref={item.ref}
-                style={{ opacity: 0, position: 'absolute' }}
-              >
+              <div key={item.id} ref={item.ref} style={{ opacity: 0, position: 'absolute' }}>
                 {item.element}
               </div>
             );
@@ -403,5 +402,7 @@ export const MasonryGrid = forwardRef<HTMLDivElement, MasonryGridProps>(
 );
 
 MasonryGrid.displayName = 'MasonryGrid';
+
+export default MasonryGrid;
 
 // Ensure loadingImages state resets when items/columns/imagesLoaded change

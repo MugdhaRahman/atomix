@@ -34,10 +34,14 @@ export * from './useCheckbox';
 export * from './useRadio';
 export * from './useTextarea';
 
-// Export other composables as needed 
+// Export other composables as needed
 
 // New composables
 export * from './useDataTable';
 export * from './usePagination';
 export * from './useModal';
-export * from './useBreadcrumb'; 
+export * from './useBreadcrumb';
+export * from './useCard';
+
+// Theme composables
+export * from './useTheme';

@@ -3,9 +3,7 @@ import { HeroProps, HeroAlignment } from '../../lib/types/components';
 import { useHero } from '../../lib/composables/useHero';
 import { HERO } from '../../lib/constants/components';
 
-export type HeroComponentProps = HeroProps;
-
-export const Hero: React.FC<HeroComponentProps> = ({
+export const Hero: React.FC<HeroProps> = ({
   title,
   subtitle,
   text,
@@ -26,18 +24,18 @@ export const Hero: React.FC<HeroComponentProps> = ({
   videoOptions = {
     autoplay: true,
     loop: true,
-    muted: true
-  }
+    muted: true,
+  },
 }) => {
-  const { 
-    generateHeroClassNames, 
-    generateImageColClass, 
+  const {
+    generateHeroClassNames,
+    generateImageColClass,
     generateContentColClass,
     hasBackgroundImage,
     hasForegroundImage,
     useGridLayout,
     heroRef,
-    videoRef
+    videoRef,
   } = useHero({
     alignment,
     imageColSize,
@@ -49,21 +47,23 @@ export const Hero: React.FC<HeroComponentProps> = ({
     contentWidth,
     parallax,
     parallaxIntensity,
-    videoBackground
+    videoBackground,
   });
 
   // Create custom style for hero element with content width if provided
-  const heroStyle: React.CSSProperties | undefined = contentWidth ? {
-    '--atomix-hero-content-width': contentWidth
-  } as React.CSSProperties : undefined;
+  const heroStyle: React.CSSProperties | undefined = contentWidth
+    ? ({
+        '--atomix-hero-content-width': contentWidth,
+      } as React.CSSProperties)
+    : undefined;
 
   const renderVideoBackground = () => {
     if (!videoBackground) return null;
-    
+
     const { autoplay, loop, muted, posterUrl } = videoOptions;
-    
+
     return (
-      <video 
+      <video
         ref={videoRef}
         className="c-hero__video"
         autoPlay={autoplay}
@@ -80,7 +80,7 @@ export const Hero: React.FC<HeroComponentProps> = ({
 
   const renderBackground = () => {
     if (!hasBackgroundImage && !videoBackground) return null;
-    
+
     return (
       <div className={HERO.SELECTORS.BG.replace('.', '')}>
         {backgroundImageSrc && (
@@ -107,26 +107,18 @@ export const Hero: React.FC<HeroComponentProps> = ({
 
   const renderForegroundImage = () => {
     if (!hasForegroundImage) return null;
-    
+
     if (alignment === 'center') {
       return (
         <div className={HERO.SELECTORS.IMAGE_WRAPPER.replace('.', '')}>
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className={HERO.SELECTORS.IMAGE.replace('.', '')}
-          />
+          <img src={imageSrc} alt={imageAlt} className={HERO.SELECTORS.IMAGE.replace('.', '')} />
         </div>
       );
     }
-    
+
     return (
       <div className={generateImageColClass()}>
-        <img
-          src={imageSrc}
-          alt={imageAlt}
-          className={HERO.SELECTORS.IMAGE.replace('.', '')}
-        />
+        <img src={imageSrc} alt={imageAlt} className={HERO.SELECTORS.IMAGE.replace('.', '')} />
       </div>
     );
   };
@@ -136,29 +128,25 @@ export const Hero: React.FC<HeroComponentProps> = ({
     if (alignment === 'left') {
       return (
         <>
-          <div className={generateContentColClass()}>
-            {renderContent()}
-          </div>
+          <div className={generateContentColClass()}>{renderContent()}</div>
           {renderForegroundImage()}
         </>
       );
     }
-    
+
     // For right-aligned or default, render image first then content
     return (
       <>
         {renderForegroundImage()}
-        <div className={generateContentColClass()}>
-          {renderContent()}
-        </div>
+        <div className={generateContentColClass()}>{renderContent()}</div>
       </>
     );
   };
 
   return (
-    <div 
+    <div
       ref={heroRef}
-      className={generateHeroClassNames(className)} 
+      className={generateHeroClassNames(className)}
       style={heroStyle}
       data-parallax={parallax ? 'true' : undefined}
       data-parallax-intensity={parallax ? parallaxIntensity : undefined}
@@ -178,4 +166,10 @@ export const Hero: React.FC<HeroComponentProps> = ({
       </div>
     </div>
   );
-}; 
+};
+
+export type { HeroProps };
+
+Hero.displayName = 'Hero';
+
+export default Hero;

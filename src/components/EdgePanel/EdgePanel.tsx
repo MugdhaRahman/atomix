@@ -3,6 +3,7 @@ import { EdgePanelProps } from '../../lib/types/components';
 import { useEdgePanel } from '../../lib/composables/useEdgePanel';
 import { EDGE_PANEL } from '../../lib/constants/components';
 import { Icon } from '../Icon/Icon';
+
 export const EdgePanel: React.FC<EdgePanelProps> = ({
   title,
   children,
@@ -21,7 +22,7 @@ export const EdgePanel: React.FC<EdgePanelProps> = ({
     backdropRef,
     generateEdgePanelClass,
     closePanel,
-    handleBackdropClick
+    handleBackdropClick,
   } = useEdgePanel({
     position,
     mode,
@@ -46,27 +47,27 @@ export const EdgePanel: React.FC<EdgePanelProps> = ({
   return (
     <div className={panelClass} data-position={position} data-mode={mode}>
       {backdrop && (
-        <div 
-          ref={backdropRef}
-          className="c-edge-panel__backdrop"
-          onClick={handleBackdropClick}
-        />
+        <div ref={backdropRef} className="c-edge-panel__backdrop" onClick={handleBackdropClick} />
       )}
       <div ref={containerRef} className="c-edge-panel__container">
         <div className="c-edge-panel__header">
           <h4>{title}</h4>
-          <button 
-            className="c-edge-panel__close c-btn c-btn--icon" 
+          <button
+            className="c-edge-panel__close c-btn c-btn--icon"
             onClick={closePanel}
             aria-label="Close panel"
           >
             <Icon name="X" />
           </button>
         </div>
-        <div className="c-edge-panel__body">
-          {children}
-        </div>
+        <div className="c-edge-panel__body">{children}</div>
       </div>
     </div>
   );
-}; 
+};
+
+export type { EdgePanelProps };
+
+EdgePanel.displayName = 'EdgePanel';
+
+export default EdgePanel;

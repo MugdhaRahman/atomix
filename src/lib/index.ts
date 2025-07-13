@@ -1,31 +1,11 @@
-// Export composables
-export * from './composables';
+// Import and re-export as namespaces with proper typing
+import * as composablesImport from './composables';
+import * as utilsImport from './utils';
+import * as typesImport from './types';
+import * as constantsImport from './constants';
 
-// Export utilities
-export * from './utils';
-
-// Export types
-export * from './types';
-
-// Export constants
-export * from './constants';
-
-// Export component types
-export type {
-  Size,
-  ThemeColor,
-  Variant,
-  BaseComponentProps,
-  StateModifier,
-  IconPosition,
-  ButtonProps,
-  AccordionProps,
-  AccordionState,
-  ElementRefs,
-  HeroProps,
-  SpinnerProps,
-  NavbarProps,
-  NavProps,
-  NavItemProps,
-  NavDropdownProps
-} from './types/components'; 
+// Export as namespaces with explicit typing
+export const composables: typeof composablesImport = composablesImport;
+export const utils: typeof utilsImport = utilsImport;
+export const types: typeof typesImport = typesImport;
+export const constants: typeof constantsImport = constantsImport;

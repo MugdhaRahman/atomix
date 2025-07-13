@@ -1,4 +1,5 @@
-import { Messages, MessagesOptions, MessageItem } from './index';
+import { Messages, MessagesOptions } from './index';
+import { MessageItem } from '../../../lib/types/components';
 import * as MessagesInteractions from './componentInteractions';
 
 // Create a type for the Messages namespace
@@ -19,7 +20,7 @@ interface MessagesNamespace {
 
 // Initialize global namespace
 if (typeof window !== 'undefined') {
-  if (!window.Atomix) {
+  if (!(window as any).Atomix) {
     (window as any).Atomix = {};
   }
 
@@ -44,9 +45,6 @@ if (typeof window !== 'undefined') {
   });
 }
 
-export {
-  Messages,
-  MessagesOptions,
-  MessageItem,
-  MessagesInteractions
-}; 
+export { Messages, MessagesInteractions };
+export type { MessagesOptions } from './index';
+export type { MessageItem } from '../../../lib/types/components';

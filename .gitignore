@@ -15,6 +15,7 @@ storybook-static/
 .env
 .env.local
 .env.*.local
+.npmrc
 
 # IDE files
 .idea/
@@ -37,5 +38,12 @@ Thumbs.db
 .cursor/
 .junie/
 .windsurf/
+.trae/
+
+# Cursor AI specific files (keep configuration files)
+.cursorignore
+setup-mcp-servers.sh
+.cursorrules
+.aicontext
 
 old/

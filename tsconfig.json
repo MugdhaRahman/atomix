@@ -1,26 +1,55 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@atomix-ux/react": ["./src/components/index.ts"],
-      "@atomix-ux/react/*": ["src/components/*"]
-    },
-    "strict": true,
+    /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true,
+    "target": "ES2020", // Align with build config
+    "allowJs": true,
     "resolveJsonModule": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
-    ]
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+
+    /* For library builds with Rollup: */
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    /* Library specific */
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Align with build config
+    "jsx": "react-jsx",
+
+    /* Path mapping */
+    "baseUrl": ".",
+    "paths": {
+      "@shohojdhara/atomix": ["./src/index.ts"],
+      "@/*": ["./src/*"]
+    },
+
+    /* Output Configuration */
+    "declarationDir": "./dist/types",
+    "outDir": "./dist",
+
+    /* Type Definitions */
+    "typeRoots": ["./node_modules/@types", "./src/types", "./types"],
+
+    /* For linting only (since Rollup handles compilation) */
+    "noEmit": true
   },
-  "include": ["src/**/*", "src/types/**/*", "docs/main.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*", "types/**/*", "vitest.config.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.stories.tsx",
+    "**/*.stories.ts",
+    "**/scripts/**",
+    "src/htmlComponentsEntry.ts"
+  ]
 }

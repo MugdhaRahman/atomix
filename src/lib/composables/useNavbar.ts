@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavbarProps, NavProps, NavItemProps, NavDropdownProps } from '../types/components';
 import { NAVBAR, NAV } from '../constants/components';
 import React from 'react';
-import { Icon } from '../../components/Icon';
+import { Icon } from '../../components/Icon/Icon';
 
 /**
  * Navbar state and functionality
@@ -14,11 +14,15 @@ export function useNavbar(initialProps?: Partial<NavbarProps>) {
   const defaultProps: Partial<NavbarProps> = {
     position: 'static',
     collapsible: true,
-    ...initialProps
+    backdrop: false,
+    closeOnOutsideClick: true,
+    closeOnEscape: true,
+    ariaLabel: 'Main navigation',
+    ...initialProps,
   };
 
   // Local expanded state for when not controlled externally
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(defaultProps.expanded || false);
 
   /**
    * Generate navbar class based on properties
@@ -36,7 +40,7 @@ export function useNavbar(initialProps?: Partial<NavbarProps>) {
     const positionClass = position !== 'static' ? `c-navbar--${position}` : '';
     const variantClass = variant ? `c-navbar--${variant}` : '';
     const collapsibleClass = collapsible ? 'c-navbar--collapsible' : '';
-    
+
     return `c-navbar ${positionClass} ${variantClass} ${collapsibleClass} ${className}`.trim();
   };
 
@@ -64,7 +68,7 @@ export function useNavbar(initialProps?: Partial<NavbarProps>) {
   const toggleExpanded = () => {
     const newState = !isExpanded;
     setIsExpanded(newState);
-    
+
     if (defaultProps.onToggle) {
       defaultProps.onToggle(newState);
     }
@@ -87,7 +91,7 @@ export function useNavbar(initialProps?: Partial<NavbarProps>) {
     generateContainerStyle,
     generateCollapseClass,
     toggleExpanded,
-    getExpandedState
+    getExpandedState,
   };
 }
 
@@ -100,7 +104,8 @@ export function useNav(initialProps?: Partial<NavProps>) {
   // Default nav properties
   const defaultProps: Partial<NavProps> = {
     alignment: 'start',
-    ...initialProps
+    variant: 'default',
+    ...initialProps,
   };
 
   /**
@@ -111,17 +116,19 @@ export function useNav(initialProps?: Partial<NavProps>) {
   const generateNavClass = (props: Partial<NavProps>): string => {
     const {
       alignment = defaultProps.alignment,
+      variant = defaultProps.variant,
       className = '',
     } = props;
 
     const alignmentClass = alignment !== 'start' ? `c-nav--${alignment}` : '';
-    
-    return `c-nav ${alignmentClass} ${className}`.trim();
+    const variantClass = variant !== 'default' ? `c-nav--${variant}` : '';
+
+    return `c-nav ${alignmentClass} ${variantClass} ${className}`.trim();
   };
 
   return {
     defaultProps,
-    generateNavClass
+    generateNavClass,
   };
 }
 
@@ -136,7 +143,7 @@ export function useNavItem(initialProps?: Partial<NavItemProps & { megaMenu?: bo
     dropdown: false,
     megaMenu: false,
     active: false,
-    ...initialProps
+    ...initialProps,
   };
 
   /**
@@ -159,7 +166,7 @@ export function useNavItem(initialProps?: Partial<NavItemProps & { megaMenu?: bo
     const megaMenuClass = megaMenu ? 'c-nav__item--mega-menu' : '';
     const activeClass = active ? NAV.CLASSES.ACTIVE : '';
     const disabledClass = disabled ? NAV.CLASSES.DISABLED : '';
-    
+
     return `c-nav__item ${dropdownClass} ${megaMenuClass} ${activeClass} ${disabledClass} ${className}`.trim();
   };
 
@@ -173,7 +180,7 @@ export function useNavItem(initialProps?: Partial<NavItemProps & { megaMenu?: bo
   const generateNavLinkClass = (active = false, disabled = false, className = ''): string => {
     const activeClass = active ? NAV.CLASSES.ACTIVE : '';
     const disabledClass = disabled ? 'c-nav__link--disabled' : '';
-    
+
     return `c-nav__link ${activeClass} ${disabledClass} ${className}`.trim();
   };
 
@@ -188,7 +195,7 @@ export function useNavItem(initialProps?: Partial<NavItemProps & { megaMenu?: bo
         e.preventDefault();
         return;
       }
-      
+
       handler();
     };
   };
@@ -197,7 +204,7 @@ export function useNavItem(initialProps?: Partial<NavItemProps & { megaMenu?: bo
     defaultProps,
     generateNavItemClass,
     generateNavLinkClass,
-    handleClick
+    handleClick,
   };
 }
 
@@ -211,7 +218,7 @@ export function useNavDropdown(initialProps?: Partial<NavDropdownProps>) {
   const defaultProps: Partial<NavDropdownProps> = {
     alignment: 'start',
     megaMenu: false,
-    ...initialProps
+    ...initialProps,
   };
 
   /**
@@ -227,8 +234,10 @@ export function useNavDropdown(initialProps?: Partial<NavDropdownProps>) {
     } = props;
 
     // Select the base class based on mega menu or regular dropdown
-    const baseClass = megaMenu ? NAV.SELECTORS.MEGA_MENU.replace('.', '') : NAV.SELECTORS.DROPDOWN_MENU.replace('.', '');
-    
+    const baseClass = megaMenu
+      ? NAV.SELECTORS.MEGA_MENU.replace('.', '')
+      : NAV.SELECTORS.DROPDOWN_MENU.replace('.', '');
+
     // Add alignment class if not default 'start'
     let alignmentClass = '';
     if (alignment === 'center') {
@@ -236,7 +245,7 @@ export function useNavDropdown(initialProps?: Partial<NavDropdownProps>) {
     } else if (alignment === 'end') {
       alignmentClass = `${baseClass}--end`;
     }
-    
+
     return `${baseClass} ${alignmentClass} ${className}`.trim();
   };
 
@@ -249,7 +258,7 @@ export function useNavDropdown(initialProps?: Partial<NavDropdownProps>) {
     // because it requires DOM access
     return document.querySelector('.c-navbar--fixed-bottom') !== null;
   };
-  
+
   /**
    * Get the appropriate icon name based on navbar position
    * @param isMegaMenu - Whether it's a mega menu
@@ -262,7 +271,9 @@ export function useNavDropdown(initialProps?: Partial<NavDropdownProps>) {
 
   // Keeping this for backward compatibility
   const getIconClass = (isMegaMenu: boolean = false): string => {
-    console.warn('getIconClass is deprecated. Please use the Icon component directly with the getIconName function.');
+    console.warn(
+      'getIconClass is deprecated. Please use the Icon component directly with the getIconName function.'
+    );
     const isFixedBottom = isInFixedBottomNavbar();
     return `c-nav__icon ${isFixedBottom ? 'icon-lux-caret-up' : 'icon-lux-caret-down'}`;
   };
@@ -272,6 +283,6 @@ export function useNavDropdown(initialProps?: Partial<NavDropdownProps>) {
     generateDropdownMenuClass,
     isInFixedBottomNavbar,
     getIconClass,
-    getIconName
+    getIconName,
   };
-} 
+}

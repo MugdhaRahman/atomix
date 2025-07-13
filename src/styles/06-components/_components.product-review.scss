@@ -4,6 +4,7 @@
 @use '../02-tools/tools.rem' as rem;
 @use '../02-tools/tools.size' as size;
 @use '../02-tools/tools.grid' as *;
+@use '../02-tools/tools.breakpoints' as *;
 
 .c-product-review {
   $root: &;
@@ -92,7 +93,7 @@
     color: var(--#{config.$prefix}body-color);
     font-family: inherit;
     resize: vertical;
-    
+
     &:focus {
       outline: none;
       border-color: var(--#{config.$prefix}primary);
@@ -108,12 +109,12 @@
   &__success {
     text-align: center;
     padding: var(--#{config.$prefix}product-review-spacing) 0;
-    
+
     h3 {
       margin-top: 0;
       margin-bottom: rem.rem(8px);
     }
-    
+
     p {
       margin-bottom: var(--#{config.$prefix}product-review-spacing);
       color: var(--#{config.$prefix}text-muted);

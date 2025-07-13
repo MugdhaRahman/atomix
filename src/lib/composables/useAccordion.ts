@@ -13,9 +13,9 @@ interface UseAccordionResult {
   /** Update the panel height based on content */
   updatePanelHeight: () => void;
   /** Reference to the panel element */
-  panelRef: React.RefObject<HTMLDivElement>;
+  panelRef: React.RefObject<HTMLDivElement | null>;
   /** Reference to the content element */
-  contentRef: React.RefObject<HTMLDivElement>;
+  contentRef: React.RefObject<HTMLDivElement | null>;
   /** Generate accordion class names based on state */
   generateClassNames: (baseClassName?: string) => string;
   /** Generate header class names */
@@ -27,13 +27,21 @@ interface UseAccordionResult {
  * @param initialProps - Initial accordion properties
  * @returns Accordion state and methods
  */
-export function useAccordion(initialProps?: Partial<AccordionProps> & { isOpen?: boolean; onOpenChange?: (open: boolean) => void }): UseAccordionResult {
+export function useAccordion(
+  initialProps?: Partial<AccordionProps> & {
+    isOpen?: boolean;
+    onOpenChange?: (open: boolean) => void;
+  }
+): UseAccordionResult {
   // Default accordion properties
-  const defaultProps: Partial<AccordionProps> & { isOpen?: boolean; onOpenChange?: (open: boolean) => void } = {
+  const defaultProps: Partial<AccordionProps> & {
+    isOpen?: boolean;
+    onOpenChange?: (open: boolean) => void;
+  } = {
     defaultOpen: false,
     disabled: false,
     iconPosition: 'right' as IconPosition,
-    ...initialProps
+    ...initialProps,
   };
 
   // Controlled/uncontrolled open state
@@ -104,7 +112,8 @@ export function useAccordion(initialProps?: Partial<AccordionProps> & { isOpen?:
    * Generate header class names
    */
   const generateHeaderClassNames = (): string => {
-    const iconPositionClass = defaultProps.iconPosition === 'left' ? 'c-accordion__header--icon-left' : '';
+    const iconPositionClass =
+      defaultProps.iconPosition === 'left' ? 'c-accordion__header--icon-left' : '';
     return `c-accordion__header ${iconPositionClass}`.trim();
   };
 
@@ -115,6 +124,6 @@ export function useAccordion(initialProps?: Partial<AccordionProps> & { isOpen?:
     panelRef,
     contentRef,
     generateClassNames,
-    generateHeaderClassNames
+    generateHeaderClassNames,
   };
-} 
+}

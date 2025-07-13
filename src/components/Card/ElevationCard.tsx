@@ -1,13 +1,7 @@
-import React, { ReactNode, forwardRef } from 'react';
-import Card, { CardProps } from './Card';
-import useCard from './useCard';
-
-export interface ElevationCardProps extends CardProps {
-  /**
-   * CSS class for elevation effect
-   */
-  elevationClass?: string;
-}
+import React, { RefObject } from 'react';
+import Card from './Card';
+import { useCard } from '../../lib/composables/useCard';
+import { ElevationCardProps } from '../../lib/types/components';
 
 export const ElevationCard: React.FC<ElevationCardProps> = ({
   elevationClass = 'is-elevated',
@@ -19,13 +13,13 @@ export const ElevationCard: React.FC<ElevationCardProps> = ({
   const { getCardProps } = useCard({
     elevationEffect: true,
     elevationClass,
-    clickable: !!onClick,
+    clickable: Boolean(onClick),
     onClick: onClick as (event: React.MouseEvent) => void,
-    focusEffect: true
+    focusEffect: true,
   });
-  
+
   const cardProps = getCardProps();
-  
+
   return (
     <div
       className={`${className} ${cardProps.className}`}
@@ -39,15 +33,15 @@ export const ElevationCard: React.FC<ElevationCardProps> = ({
       onClick={cardProps.onClick as unknown as React.MouseEventHandler<HTMLDivElement>}
       onKeyDown={cardProps.onKeyDown as unknown as React.KeyboardEventHandler<HTMLDivElement>}
     >
-      <Card 
-        {...props}
-        className=""
-        onClick={undefined}
-      >
+      <Card {...props} className="" onClick={undefined}>
         {children}
       </Card>
     </div>
   );
 };
 
-export default ElevationCard; 
+export type { ElevationCardProps };
+
+ElevationCard.displayName = 'ElevationCard';
+
+export default ElevationCard;

@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { TodoProps, Size } from '../types/components';
-import { TodoItem } from '../../components/Todo/scripts/types';
-import { v4 as uuidv4 } from 'uuid';
+import { TodoItem, TodoProps } from '../types/components';
+import { generateUUID } from '../utils';
 import { TODO, SIZES } from '../constants/components';
 
 /**
@@ -17,7 +16,7 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
     size: 'md',
     placeholder: 'Add a new todo',
     showCompleted: true,
-    ...initialProps
+    ...initialProps,
   };
 
   // State
@@ -30,15 +29,11 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
    * @returns Class string for the todo component
    */
   const generateTodoClasses = (props: Partial<TodoProps>): string => {
-    const {
-      size = defaultProps.size,
-      className = '',
-      disabled = false
-    } = props;
+    const { size = defaultProps.size, className = '', disabled = false } = props;
 
     const sizeClass = size === 'md' ? '' : `c-todo--${size}`;
     const disabledClass = disabled ? 'c-todo--disabled' : '';
-    
+
     return `${TODO.CLASSES.BASE} ${sizeClass} ${disabledClass} ${className}`.trim();
   };
 
@@ -59,13 +54,13 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
    */
   const addTodo = (text: string): TodoItem | null => {
     if (!text.trim()) return null;
-    
+
     const newItem: TodoItem = {
-      id: uuidv4(),
+      id: generateUUID(),
       text: text.trim(),
-      completed: false
+      completed: false,
     };
-    
+
     setItems(prevItems => [...prevItems, newItem]);
     setInputText('');
     return newItem;
@@ -78,7 +73,7 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
    */
   const toggleTodo = (id: string): TodoItem | null => {
     let updatedItem: TodoItem | null = null;
-    
+
     setItems(prevItems => {
       return prevItems.map(item => {
         if (item.id === id) {
@@ -88,7 +83,7 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
         return item;
       });
     });
-    
+
     return updatedItem;
   };
 
@@ -99,9 +94,9 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
    */
   const deleteTodo = (id: string): boolean => {
     const initialLength = items.length;
-    
+
     setItems(prevItems => prevItems.filter(item => item.id !== id));
-    
+
     return items.length !== initialLength;
   };
 
@@ -113,9 +108,9 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
   const handleSubmit = (event: React.FormEvent, onAddTodo?: (text: string) => void) => {
     event.preventDefault();
     if (!inputText.trim()) return;
-    
+
     const newItem = addTodo(inputText);
-    
+
     if (newItem && onAddTodo) {
       onAddTodo(newItem.text);
     }
@@ -141,6 +136,6 @@ export function useTodo(initialProps?: Partial<TodoProps>) {
     handleSubmit,
     generateTodoClasses,
     generateItemClasses,
-    getFilteredItems
+    getFilteredItems,
   };
-} 
+}

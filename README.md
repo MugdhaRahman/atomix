@@ -1,110 +1,72 @@
-# Atomix Design System
 
-A modern, lightweight, and customizable design system for building beautiful user interfaces. Built with a focus on scalability, extensibility, and maintainability.
+# Atomix
 
-## Getting Started
+**Atomix** is a modern component library for Web, React and Next.js applications with full SSR support. It provides a comprehensive set of UI components built with accessibility, performance, and developer experience in mind.
 
-### Installation
+## ✨ Features
 
-```bash
-# Clone the repository
-git clone https://github.com/liimonx/atomix.git
-cd atomix
+- **Comprehensive Component Library**: A rich set of UI components to build modern web applications.
+- **Full SSR Support**: Seamless integration with server-side rendering frameworks like Next.js.
+- **Accessibility First**: Built with accessibility in mind, following WAI-ARIA standards.
+- **High Performance**: Optimized for performance with a small bundle size.
+- **Developer Friendly**: Easy to use with a simple and intuitive API.
+- **Themeable**: Easily customize the look and feel to match your brand.
+- **TypeScript Support**: Written in TypeScript with predictable static types.
 
-# Install dependencies
-npm install
-```
+## 📦 Installation
 
-## Development
-
-### Quick Start
-
-The fastest way to start development is using Storybook:
+To install Atomix, you can use npm or yarn:
 
 ```bash
-npm run storybook
+npm install @shohojdhara/atomix
 ```
-
-This will start Storybook at http://localhost:6006, where you can browse and develop components interactively.
-
-### Components Library
-
-Build the components library:
 
 ```bash
-npm run build:components
+yarn add @shohojdhara/atomix
 ```
 
-Watch for changes during development:
+## 🚀 Usage
 
-```bash
-npm run dev:components
+To start using Atomix, import the CSS and the components you need.
+
+### CSS
+
+Import the CSS file in your main application file:
+
+```javascript
+import '@shohojdhara/atomix/dist/css/atomix.css';
 ```
 
-The built files will be available in the `dist` folder.
+### Components
 
-### Documentation Site
+Import the components you want to use:
 
-Start the documentation site development server:
+```javascript
+import { Button, Card } from '@shohojdhara/atomix';
 
-```bash
-npm run dev:docs
+function App() {
+  return (
+    <div>
+      <Button>Click me</Button>
+      <Card>
+        <h2>Card Title</h2>
+        <p>This is a simple card component.</p>
+      </Card>
+    </div>
+  );
+}
 ```
 
-Or with automatic browser opening:
+## 🤝 Contributing
 
-```bash
-npm run serve
-```
+We welcome contributions from the community. If you'd like to contribute, please follow these steps:
 
-This will start a development server at http://localhost:3000 with hot reloading enabled.
+1. **Fork the repository**: Fork the repository to your own GitHub account.
+2. **Create a branch**: Create a new branch for your feature or bug fix.
+3. **Make your changes**: Make your changes and commit them with a clear and concise message.
+4. **Push your changes**: Push your changes to your forked repository.
+5. **Create a pull request**: Create a pull request to the main repository.
 
-Build the documentation site:
+## 📝 License
 
-```bash
-npm run build:docs
-```
-
-### Component Development
-
-When creating new components for the Atomix design system, please follow our [Component Development Guidelines](./atomix-component-guidelines.md) to ensure consistency and quality.
-
-## Implementation Guide
-
-For a comprehensive guide on how to use Atomix in your projects, please refer to our beginner-friendly [Implementation Guide](./implementation-guide.md). This guide covers:
-
-- Setting up Atomix in your project
-- Using components with React or vanilla HTML/CSS/JS
-- Layout and structure systems
-- Customization options
-- Utility classes
-- Best practices
-- Troubleshooting
-
-### Deployment
-
-Deploy the documentation and Storybook to GitHub Pages:
-
-```bash
-npm run deploy
-```
-
-This will run the predeploy script to build both the documentation site and Storybook before deploying to GitHub Pages.
-
-## Available Scripts
-
-- `npm run storybook`: Start Storybook development server
-- `npm run build-storybook`: Build Storybook for production
-- `npm run dev`: Alias for `npm run storybook`
-- `npm run build`: Alias for `npm run build:components`
-- `npm run build:components`: Build components library
-- `npm run dev:components`: Watch for component changes
-- `npm run build:docs`: Build documentation site
-- `npm run dev:docs`: Start documentation development server
-- `npm run serve`: Start documentation server with browser opening
-- `npm run predeploy`: Prepare files for deployment
-- `npm run deploy`: Deploy to GitHub Pages
-
-## License
-
-This project is licensed under the Apache License - see the LICENSE file for details.
+Atomix is licensed under the [Apache-2.0 License](LICENSE).

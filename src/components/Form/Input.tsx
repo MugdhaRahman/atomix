@@ -33,14 +33,24 @@ export const Input: React.FC<InputProps> = ({
   ariaLabel,
   ariaDescribedBy,
 }) => {
-  const { generateInputClass } = useInput({ 
-    size, variant, disabled, invalid, valid
+  const { generateInputClass } = useInput({
+    size,
+    variant,
+    disabled,
+    invalid,
+    valid,
   });
-  
-  const inputClass = generateInputClass({ 
-    className, size, variant, disabled, invalid, valid, type
+
+  const inputClass = generateInputClass({
+    className,
+    size,
+    variant,
+    disabled,
+    invalid,
+    valid,
+    type,
   });
-  
+
   return (
     <input
       type={type}
@@ -70,4 +80,8 @@ export const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input; 
+export type { InputProps };
+
+Input.displayName = 'Input';
+
+export default Input;

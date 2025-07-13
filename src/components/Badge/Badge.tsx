@@ -11,21 +11,29 @@ export const Badge: React.FC<BadgeProps> = ({
   icon,
   className = '',
 }) => {
-  const { generateBadgeClass } = useBadge({ 
-    variant, size, disabled 
+  const { generateBadgeClass } = useBadge({
+    variant,
+    size,
+    disabled,
   });
-  
-  const badgeClass = generateBadgeClass({ 
-    variant, size, disabled, className 
+
+  const badgeClass = generateBadgeClass({
+    variant,
+    size,
+    disabled,
+    className,
   });
-  
+
   return (
-    <span
-      className={badgeClass}
-      aria-disabled={disabled}
-    >
+    <span className={badgeClass} aria-disabled={disabled}>
       {icon && <span className={BADGE.ICON_CLASS}>{icon}</span>}
       <span>{label}</span>
     </span>
   );
-}; 
+};
+
+Badge.displayName = 'Badge';
+
+export type { BadgeProps };
+
+export default Badge;

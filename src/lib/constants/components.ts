@@ -11,7 +11,7 @@ export const THEME_COLORS: ThemeColor[] = [
   'warning',
   'error',
   'light',
-  'dark'
+  'dark',
 ];
 
 /**
@@ -39,6 +39,26 @@ export const BUTTON = {
 };
 
 /**
+ * Callout-specific constants
+ */
+export const CALLOUT = {
+  BASE_CLASS: 'c-callout',
+  CONTENT_CLASS: 'c-callout__content',
+  ICON_CLASS: 'c-callout__icon',
+  MESSAGE_CLASS: 'c-callout__message',
+  TITLE_CLASS: 'c-callout__title',
+  TEXT_CLASS: 'c-callout__text',
+  ACTIONS_CLASS: 'c-callout__actions',
+  CLOSE_BTN_CLASS: 'c-callout__close-btn',
+  VARIANT_PREFIX: 'c-callout--',
+  CLASSES: {
+    ONELINE: 'c-callout--oneline',
+    TOAST: 'c-callout--toast',
+    HIDE: 'is-hide',
+  },
+};
+
+/**
  * Accordion-specific constants
  */
 export const ACCORDION = {
@@ -46,22 +66,22 @@ export const ACCORDION = {
     ACCORDION: '.c-accordion',
     HEADER: '.c-accordion__header',
     PANEL: '.c-accordion__panel',
-    BODY: '.c-accordion__body'
+    BODY: '.c-accordion__body',
   },
   CLASSES: {
     IS_OPEN: 'is-open',
     IS_ANIMATING: 'is-animating',
-    IS_DISABLED: 'is-disabled'
+    IS_DISABLED: 'is-disabled',
   },
   ATTRIBUTES: {
     ARIA_EXPANDED: 'aria-expanded',
     ARIA_CONTROLS: 'aria-controls',
     ARIA_HIDDEN: 'aria-hidden',
-    ROLE: 'role'
+    ROLE: 'role',
   },
   CSS_VARS: {
-    PANEL_HEIGHT: '--panel-height'
-  }
+    PANEL_HEIGHT: '--panel-height',
+  },
 };
 
 /**
@@ -71,7 +91,31 @@ export const BADGE = {
   BASE_CLASS: 'c-badge',
   ICON_CLASS: 'c-badge__icon',
   VARIANT_PREFIX: 'c-badge--',
-  SIZE_PREFIX: 'c-badge--'
+  SIZE_PREFIX: 'c-badge--',
+};
+
+/**
+ * List-specific constants
+ */
+export const LIST = {
+  BASE_CLASS: 'c-list',
+  ITEM_CLASS: 'c-list__item',
+  VARIANT_PREFIX: 'c-list--',
+  SIZE_PREFIX: 'c-list--',
+  CLASSES: {
+    ORDERED: 'c-list--ordered',
+    INLINE: 'c-list--inline',
+  },
+};
+
+/**
+ * List Group-specific constants
+ */
+export const LIST_GROUP = {
+  BASE_CLASS: 'c-list-group',
+  ITEM_CLASS: 'c-list-group__item',
+  VARIANT_PREFIX: 'c-list-group--',
+  SIZE_PREFIX: 'c-list-group--',
 };
 
 /**
@@ -81,17 +125,17 @@ export const BREADCRUMB = {
   SELECTORS: {
     BREADCRUMB: '.c-breadcrumb',
     ITEM: '.c-breadcrumb__item',
-    LINK: '.c-breadcrumb__link'
+    LINK: '.c-breadcrumb__link',
   },
   CLASSES: {
     BASE: 'c-breadcrumb',
     ITEM: 'c-breadcrumb__item',
     LINK: 'c-breadcrumb__link',
-    ACTIVE: 'is-active'
+    ACTIVE: 'is-active',
   },
   DEFAULTS: {
-    DIVIDER: '›'
-  }
+    DIVIDER: '›',
+  },
 };
 
 /**
@@ -103,16 +147,16 @@ export const COUNTDOWN = {
     TIME: '.c-countdown__time',
     TIME_COUNT: '.c-countdown__time-count',
     TIME_LABEL: '.c-countdown__time-label',
-    SEPARATOR: '.c-countdown__separator'
+    SEPARATOR: '.c-countdown__separator',
   },
   CLASSES: {
     BASE: 'c-countdown',
-    FOCUSED: 'c-countdown--focused'
+    FOCUSED: 'c-countdown--focused',
   },
   DEFAULTS: {
     SEPARATOR: ':',
-    SHOW: ['days', 'hours', 'minutes', 'seconds']
-  }
+    SHOW: ['days', 'hours', 'minutes', 'seconds'],
+  },
 };
 
 /**
@@ -132,14 +176,14 @@ export const HERO = {
     BG: '.c-hero__bg',
     BG_IMAGE: '.c-hero__bg-image',
     OVERLAY: '.c-hero__overlay',
-    IMAGE_WRAPPER: '.c-hero__image-wrapper'
+    IMAGE_WRAPPER: '.c-hero__image-wrapper',
   },
   CLASSES: {
     CENTER: 'c-hero--center',
     RIGHT: 'c-hero--right',
     LEFT: 'c-hero--left',
-    FULL_VH: 'c-hero--full-vh'
-  }
+    FULL_VH: 'c-hero--full-vh',
+  },
 };
 
 /**
@@ -150,7 +194,7 @@ export const TOOLTIP = {
     TOOLTIP: '.js-atomix-tooltip',
     TRIGGER: '.js-atomix-tooltip-trigger',
     CONTENT: '.js-atomix-tooltip-content',
-    ARROW: '.c-tooltip__arrow'
+    ARROW: '.c-tooltip__arrow',
   },
   CLASSES: {
     IS_ACTIVE: 'is-active',
@@ -161,19 +205,19 @@ export const TOOLTIP = {
     TOP_LEFT: 'c-tooltip--top-left',
     TOP_RIGHT: 'c-tooltip--top-right',
     BOTTOM_LEFT: 'c-tooltip--bottom-left',
-    BOTTOM_RIGHT: 'c-tooltip--bottom-right'
+    BOTTOM_RIGHT: 'c-tooltip--bottom-right',
   },
   ATTRIBUTES: {
     POSITION: 'data-tooltip-position',
     TRIGGER: 'data-tooltip-trigger',
-    CONTENT_ID: 'data-tooltip-id'
+    CONTENT_ID: 'data-tooltip-id',
   },
   DEFAULTS: {
     TRIGGER: 'hover',
     POSITION: 'top',
     OFFSET: 10,
-    DELAY: 200
-  }
+    DELAY: 200,
+  },
 };
 
 /**
@@ -185,7 +229,7 @@ export const POPOVER = {
     TRIGGER: '.js-atomix-popover-trigger',
     CONTENT: '.js-atomix-popover-content',
     CONTENT_INNER: '.c-popover__content-inner',
-    ARROW: '.c-popover__arrow'
+    ARROW: '.c-popover__arrow',
   },
   CLASSES: {
     IS_OPEN: 'is-open',
@@ -193,19 +237,19 @@ export const POPOVER = {
     BOTTOM: 'c-popover--bottom',
     LEFT: 'c-popover--left',
     RIGHT: 'c-popover--right',
-    AUTO: 'c-popover--auto'
+    AUTO: 'c-popover--auto',
   },
   ATTRIBUTES: {
     POSITION: 'data-popover-position',
     TRIGGER: 'data-popover-trigger',
-    CONTENT_ID: 'data-popover-id'
+    CONTENT_ID: 'data-popover-id',
   },
   DEFAULTS: {
     TRIGGER: 'click',
     POSITION: 'top',
     OFFSET: 12,
-    DELAY: 0
-  }
+    DELAY: 0,
+  },
 };
 
 /**
@@ -213,11 +257,11 @@ export const POPOVER = {
  */
 export const TOGGLE = {
   SELECTORS: {
-    TOGGLE: '.c-toggle'
+    TOGGLE: '.c-toggle',
   },
   CLASSES: {
-    IS_ON: 'is-on'
-  }
+    IS_ON: 'is-on',
+  },
 };
 
 /**
@@ -229,14 +273,14 @@ export const TAB = {
     NAV_ITEMS: '.c-tabs__nav-item',
     NAV_BTN: '.c-tabs__nav-btn',
     PANELS: '.c-tabs__panel',
-    PANEL_BODIES: '.c-tabs__panel-body'
+    PANEL_BODIES: '.c-tabs__panel-body',
   },
   CLASSES: {
-    ACTIVE: 'is-active'
+    ACTIVE: 'is-active',
   },
   DEFAULTS: {
-    ACTIVE_INDEX: 0
-  }
+    ACTIVE_INDEX: 0,
+  },
 };
 
 /**
@@ -249,13 +293,13 @@ export const STEPS = {
     LINE: '.c-steps__line',
     CONTENT: '.c-steps__content',
     NUMBER: '.c-steps__number',
-    TEXT: '.c-steps__text'
+    TEXT: '.c-steps__text',
   },
   CLASSES: {
     ACTIVE: 'is-active',
     VERTICAL: 'c-steps--vertical',
-    COMPLETED: 'is-completed'
-  }
+    COMPLETED: 'is-completed',
+  },
 };
 
 /**
@@ -269,12 +313,12 @@ export const TESTIMONIAL = {
     AUTHOR_AVATAR: '.c-testimonial__author-avatar',
     AUTHOR_INFO: '.c-testimonial__info',
     AUTHOR_NAME: '.c-testimonial__author-name',
-    AUTHOR_ROLE: '.c-testimonial__author-role'
+    AUTHOR_ROLE: '.c-testimonial__author-role',
   },
   CLASSES: {
     SMALL: 'c-testimonial--sm',
-    LARGE: 'c-testimonial--lg'
-  }
+    LARGE: 'c-testimonial--lg',
+  },
 };
 
 /**
@@ -282,7 +326,7 @@ export const TESTIMONIAL = {
  */
 export const SPINNER = {
   SELECTORS: {
-    SPINNER: '.c-spinner'
+    SPINNER: '.c-spinner',
   },
   CLASSES: {
     PRIMARY: 'c-spinner--primary',
@@ -294,9 +338,9 @@ export const SPINNER = {
     LIGHT: 'c-spinner--light',
     DARK: 'c-spinner--dark',
     SMALL: 'c-spinner--sm',
-    LARGE: 'c-spinner--lg'
+    LARGE: 'c-spinner--lg',
   },
-  VISUALLY_HIDDEN: 'u-visually-hidden'
+  VISUALLY_HIDDEN: 'u-visually-hidden',
 };
 
 /**
@@ -308,13 +352,13 @@ export const SECTION_INTRO = {
     LABEL: '.c-sectionintro__label',
     TITLE: '.c-sectionintro__title',
     TEXT: '.c-sectionintro__text',
-    ACTIONS: '.c-sectionintro__actions'
+    ACTIONS: '.c-sectionintro__actions',
   },
   CLASSES: {
     CENTER: 'c-sectionintro--center',
     LARGE: 'c-sectionintro--lg',
-    SMALL: 'c-sectionintro--sm'
-  }
+    SMALL: 'c-sectionintro--sm',
+  },
 };
 
 /**
@@ -337,16 +381,16 @@ export const RIVER = {
     IMAGE: '.c-river__image',
     BG: '.c-river__bg',
     BG_IMAGE: '.c-river__bg-image',
-    OVERLAY: '.c-river__overlay'
+    OVERLAY: '.c-river__overlay',
   },
   CLASSES: {
     CENTER: 'c-river--center',
     BREAKOUT: 'c-river--breakout',
-    REVERSE: 'c-river--reverse'
+    REVERSE: 'c-river--reverse',
   },
   ATTRIBUTES: {
-    CONTENT_WIDTH: '--river-content-width'
-  }
+    CONTENT_WIDTH: '--river-content-width',
+  },
 };
 
 /**
@@ -369,18 +413,18 @@ export const UPLOAD = {
     LOADER_TIME: '.c-upload__loader-time',
     LOADER_CONTROL: '.c-upload__loader-control',
     LOADER_BAR: '.c-upload__loader-bar',
-    LOADER_CLOSE: '.c-upload__loader-close'
+    LOADER_CLOSE: '.c-upload__loader-close',
   },
   CLASSES: {
     DISABLED: 'c-upload--disabled',
     ERROR: 'c-upload--error',
     SUCCESS: 'c-upload--success',
     LOADING: 'c-upload--loading',
-    DRAGGING: 'c-upload--dragging'
+    DRAGGING: 'c-upload--dragging',
   },
   ATTRIBUTES: {
-    PERCENTAGE: '--upload-loader-percentage'
-  }
+    PERCENTAGE: '--upload-loader-percentage',
+  },
 };
 
 /**
@@ -392,13 +436,40 @@ export const NAVBAR = {
     CONTAINER: '.c-navbar__container',
     BRAND: '.c-navbar__brand',
     COLLAPSE: '.c-navbar__collapse',
-    TOGGLER: '.c-navbar__toggler'
+    TOGGLER: '.c-navbar__toggler',
+    TOGGLER_ICON: '.c-navbar__toggler-icon',
   },
   CLASSES: {
+    BASE: 'c-navbar',
+    CONTAINER: 'c-navbar__container',
+    BRAND: 'c-navbar__brand',
+    COLLAPSE: 'c-navbar__collapse',
+    TOGGLER: 'c-navbar__toggler',
+    TOGGLER_ICON: 'c-navbar__toggler-icon',
     FIXED: 'c-navbar--fixed',
     FIXED_BOTTOM: 'c-navbar--fixed-bottom',
-    EXPANDED: 'is-expanded'
-  }
+    COLLAPSIBLE: 'c-navbar--collapsible',
+    EXPANDED: 'is-expanded',
+    BACKDROP: 'c-navbar__backdrop',
+  },
+  ATTRIBUTES: {
+    NAVBAR: 'data-navbar',
+    COLLAPSIBLE: 'data-collapsible',
+    EXPANDED: 'data-expanded',
+    POSITION: 'data-position',
+    BACKDROP: 'data-backdrop',
+    AUTO_CLOSE: 'data-auto-close',
+    KEYBOARD: 'data-keyboard',
+  },
+  DEFAULTS: {
+    POSITION: 'static',
+    COLLAPSIBLE: true,
+    EXPANDED: false,
+    BACKDROP: false,
+    AUTO_CLOSE: true,
+    KEYBOARD: true,
+    ARIA_LABEL: 'Main navigation',
+  },
 };
 
 /**
@@ -412,14 +483,60 @@ export const NAV = {
     DROPDOWN: '.c-nav__item--dropdown',
     DROPDOWN_MENU: '.c-nav__dropdown-menu',
     MEGA_MENU: '.c-nav__mega-menu',
-    ICON: '.c-nav__icon'
+    ICON: '.c-nav__icon',
   },
   CLASSES: {
     END: 'c-nav--end',
     CENTER: 'c-nav--center',
     ACTIVE: 'is-active',
-    DISABLED: 'is-disabled'
-  }
+    DISABLED: 'is-disabled',
+  },
+};
+
+/**
+ * SideMenu-specific constants
+ */
+export const SIDE_MENU = {
+  SELECTORS: {
+    SIDE_MENU: '.c-side-menu',
+    WRAPPER: '.c-side-menu__wrapper',
+    INNER: '.c-side-menu__inner',
+    TITLE: '.c-side-menu__title',
+    TOGGLER: '.c-side-menu__toggler',
+    TOGGLER_ICON: '.c-side-menu__toggler-icon',
+    LIST: '.c-side-menu__list',
+    ITEM: '.c-side-menu__item',
+    LINK: '.c-side-menu__link',
+    LINK_ICON: '.c-side-menu__link-icon',
+    LINK_TEXT: '.c-side-menu__link-text',
+  },
+  CLASSES: {
+    BASE: 'c-side-menu',
+    WRAPPER: 'c-side-menu__wrapper',
+    INNER: 'c-side-menu__inner',
+    TITLE: 'c-side-menu__title',
+    TOGGLER: 'c-side-menu__toggler',
+    TOGGLER_ICON: 'c-side-menu__toggler-icon',
+    LIST: 'c-side-menu__list',
+    ITEM: 'c-side-menu__item',
+    LINK: 'c-side-menu__link',
+    LINK_ICON: 'c-side-menu__link-icon',
+    LINK_TEXT: 'c-side-menu__link-text',
+    IS_OPEN: 'is-open',
+    ACTIVE: 'is-active',
+    DISABLED: 'is-disabled',
+  },
+  ATTRIBUTES: {
+    SIDE_MENU: 'data-side-menu',
+    COLLAPSIBLE: 'data-collapsible',
+    OPEN: 'data-open',
+    TITLE: 'data-title',
+  },
+  DEFAULTS: {
+    COLLAPSIBLE: true,
+    OPEN: false,
+    TOGGLE_ICON: '▶',
+  },
 };
 
 /**
@@ -433,18 +550,18 @@ export const RATING = {
     RATING: '.c-rating',
     STAR: '.c-rating__star',
     STAR_FULL: '.c-rating__star-full',
-    STAR_HALF: '.c-rating__star-half'
+    STAR_HALF: '.c-rating__star-half',
   },
   CLASSES: {
     FULL: 'c-rating__star--full',
     HALF: 'c-rating__star--half',
     SMALL: 'c-rating--sm',
-    LARGE: 'c-rating--lg'
+    LARGE: 'c-rating--lg',
   },
   ATTRIBUTES: {
     READONLY: 'data-readonly',
-    VALUE: 'data-value'
-  }
+    VALUE: 'data-value',
+  },
 };
 
 export const EDGE_PANEL = {
@@ -454,7 +571,7 @@ export const EDGE_PANEL = {
     CONTAINER: '.c-edge-panel__container',
     HEADER: '.c-edge-panel__header',
     BODY: '.c-edge-panel__body',
-    CLOSE: '.c-edge-panel__close'
+    CLOSE: '.c-edge-panel__close',
   },
   CLASSES: {
     BASE: 'c-edge-panel',
@@ -462,15 +579,15 @@ export const EDGE_PANEL = {
     END: 'c-edge-panel--end',
     TOP: 'c-edge-panel--top',
     BOTTOM: 'c-edge-panel--bottom',
-    IS_OPEN: 'is-open'
+    IS_OPEN: 'is-open',
   },
   TRANSFORM_VALUES: {
     start: 'translateX(-100%)',
     end: 'translateX(100%)',
     top: 'translateY(-100%)',
-    bottom: 'translateY(100%)'
+    bottom: 'translateY(100%)',
   },
-  ANIMATION_DURATION: 300
+  ANIMATION_DURATION: 300,
 };
 
 /**
@@ -543,15 +660,15 @@ export const TODO = {
     DELETE_BUTTON: '.c-todo__delete-btn',
     FORM: '.c-todo__form',
     INPUT: '.c-todo__input',
-    ADD_BUTTON: '.c-todo__add-btn'
+    ADD_BUTTON: '.c-todo__add-btn',
   },
   CLASSES: {
     BASE: 'c-todo',
     ITEM: 'c-todo__item',
     COMPLETED: 'c-todo__item--completed',
     SMALL: 'c-todo--sm',
-    LARGE: 'c-todo--lg'
-  }
+    LARGE: 'c-todo--lg',
+  },
 };
 
 /**
@@ -564,12 +681,12 @@ export const FORM = {
     LABEL: '.c-form-group__label',
     HELPER: '.c-form-group__helper',
     FIELD: '.c-form-group__field',
-    REQUIRED: '.c-form-group__required'
+    REQUIRED: '.c-form-group__required',
   },
   CLASSES: {
     BASE: 'c-form',
-    DISABLED: 'c-form--disabled'
-  }
+    DISABLED: 'c-form--disabled',
+  },
 };
 
 /**
@@ -581,7 +698,7 @@ export const FORM_GROUP = {
     LABEL: '.c-form-group__label',
     FIELD: '.c-form-group__field',
     HELPER: '.c-form-group__helper',
-    REQUIRED: '.c-form-group__required'
+    REQUIRED: '.c-form-group__required',
   },
   CLASSES: {
     BASE: 'c-form-group',
@@ -589,8 +706,8 @@ export const FORM_GROUP = {
     LARGE: 'c-form-group--lg',
     INVALID: 'c-form-group--invalid',
     VALID: 'c-form-group--valid',
-    DISABLED: 'c-form-group--disabled'
-  }
+    DISABLED: 'c-form-group--disabled',
+  },
 };
 
 /**
@@ -598,7 +715,7 @@ export const FORM_GROUP = {
  */
 export const INPUT = {
   SELECTORS: {
-    INPUT: '.c-input'
+    INPUT: '.c-input',
   },
   CLASSES: {
     BASE: 'c-input',
@@ -606,8 +723,8 @@ export const INPUT = {
     LARGE: 'c-input--lg',
     INVALID: 'is-invalid',
     VALID: 'is-valid',
-    DISABLED: 'is-disabled'
-  }
+    DISABLED: 'is-disabled',
+  },
 };
 
 /**
@@ -617,14 +734,14 @@ export const RADIO = {
   SELECTORS: {
     RADIO: '.c-radio',
     INPUT: '.c-radio__input',
-    LABEL: '.c-radio__label'
+    LABEL: '.c-radio__label',
   },
   CLASSES: {
     BASE: 'c-radio',
     INVALID: 'is-error',
     VALID: 'is-valid',
-    DISABLED: 'is-disabled'
-  }
+    DISABLED: 'is-disabled',
+  },
 };
 
 /**
@@ -645,17 +762,20 @@ export const CARD = {
     TEXT: '.c-card__text',
     ACTIONS: '.c-card__actions',
     ICON: '.c-card__icon',
-    FOOTER: '.c-card__footer'
+    FOOTER: '.c-card__footer',
   },
   CLASSES: {
     BASE: 'c-card',
     ROW: 'c-card--row',
     FLAT: 'c-card--flat',
-    ACTIVE: 'is-active'
+    ACTIVE: 'is-active',
+    FLIPPED: 'is-flipped',
+    FOCUSED: 'is-focused',
+    CLICKABLE: 'is-clickable',
   },
   DEFAULTS: {
-    HOVER: true
-  }
+    HOVER: true,
+  },
 };
 
 /**
@@ -671,7 +791,7 @@ export const SELECT = {
     SELECT_ITEM: '.c-select__item',
     ITEM_LABEL: '.c-select__item-label',
     ITEM_INPUT: '.c-select__item-input',
-    OPTION: 'option'
+    OPTION: 'option',
   },
   CLASSES: {
     BASE: 'c-select',
@@ -687,8 +807,8 @@ export const SELECT = {
     INVALID: 'is-invalid',
     VALID: 'is-valid',
     DISABLED: 'is-disabled',
-    IS_OPEN: 'is-open'
-  }
+    IS_OPEN: 'is-open',
+  },
 };
 
 /**
@@ -696,7 +816,7 @@ export const SELECT = {
  */
 export const TEXTAREA = {
   SELECTORS: {
-    TEXTAREA: '.c-textarea'
+    TEXTAREA: '.c-textarea',
   },
   CLASSES: {
     BASE: 'c-input c-input--textarea',
@@ -704,8 +824,8 @@ export const TEXTAREA = {
     LARGE: 'c-input--lg',
     INVALID: 'is-invalid',
     VALID: 'is-valid',
-    DISABLED: 'is-disabled'
-  }
+    DISABLED: 'is-disabled',
+  },
 };
 
 /**
@@ -716,7 +836,7 @@ export const AVATAR = {
     AVATAR: '.c-avatar',
     IMAGE: '.c-avatar__image',
     INITIALS: '.c-avatar__initials',
-    ICON: '.c-avatar__icon'
+    ICON: '.c-avatar__icon',
   },
   CLASSES: {
     BASE: 'c-avatar',
@@ -725,8 +845,8 @@ export const AVATAR = {
     MD: 'c-avatar--md',
     LG: 'c-avatar--lg',
     XL: 'c-avatar--xl',
-    CIRCLE: 'c-avatar--circle'
-  }
+    CIRCLE: 'c-avatar--circle',
+  },
 };
 
 /**
@@ -735,13 +855,13 @@ export const AVATAR = {
 export const AVATAR_GROUP = {
   SELECTORS: {
     GROUP: '.c-avatar-group',
-    MORE: '.c-avatar-group__more'
+    MORE: '.c-avatar-group__more',
   },
   CLASSES: {
     BASE: 'c-avatar-group',
     STACKED: 'c-avatar-group--stacked',
-    MORE: 'c-avatar-group__more'
-  }
+    MORE: 'c-avatar-group__more',
+  },
 };
 
 /**
@@ -753,10 +873,10 @@ export const MODAL = {
     OPEN_BUTTON: '.js-modal-open',
     CLOSE_BUTTONS: '.js-modal-close',
     DIALOG: '.c-modal__dialog',
-    BACKDROP: '.c-modal__backdrop'
+    BACKDROP: '.c-modal__backdrop',
   },
   CLASSES: {
-    IS_OPEN: 'is-open'
+    IS_OPEN: 'is-open',
   },
   DEFAULT_OPTIONS: {
     openELm: '.js-modal-open',
@@ -764,8 +884,8 @@ export const MODAL = {
     modalDialogELm: '.c-modal__dialog',
     backdropELm: '.c-modal__backdrop',
     backdrop: true,
-    keyboard: true
-  }
+    keyboard: true,
+  },
 };
 
 /**
@@ -822,12 +942,12 @@ export const DROPDOWN = {
     MENU_INNER: '.c-dropdown__menu-inner',
     MENU_ITEM: '.c-dropdown__menu-item',
     DIVIDER: '.c-dropdown__divider',
-    HEADER: '.c-dropdown__header'
+    HEADER: '.c-dropdown__header',
   },
   CLASSES: {
     IS_OPEN: 'is-open',
     IS_ACTIVE: 'is-active',
-    IS_DISABLED: 'is-disabled'
+    IS_DISABLED: 'is-disabled',
   },
   DEFAULTS: {
     PLACEMENT: 'bottom-start',
@@ -835,8 +955,8 @@ export const DROPDOWN = {
     OFFSET: 4,
     MIN_WIDTH: 180,
     ANIMATION_DURATION: '0.25s',
-    ANIMATION_TIMING: 'cubic-bezier(0.16, 1, 0.3, 1)'
-  }
+    ANIMATION_TIMING: 'cubic-bezier(0.16, 1, 0.3, 1)',
+  },
 };
 
 /**
@@ -868,7 +988,7 @@ export const PROGRESS = {
   },
   DEFAULTS: {
     ARIA_LABEL: 'Progress bar',
-  }
+  },
 };
 
 export const DATEPICKER = {
@@ -887,14 +1007,14 @@ export const DATEPICKER = {
     CLEAR_BUTTON: '.c-datepicker__clear-button',
     CLOSE_BUTTON: '.c-datepicker__close-button',
     NAV_BUTTON: '.c-datepicker__nav-button',
-    VIEW_SWITCH: '.c-datepicker__view-switch'
+    VIEW_SWITCH: '.c-datepicker__view-switch',
   },
   CLASSES: {
     IS_OPEN: 'is-open',
     IS_DISABLED: 'is-disabled',
     IS_SELECTED: 'is-selected',
     IS_TODAY: 'is-today',
-    INLINE: 'c-datepicker--inline'
+    INLINE: 'c-datepicker--inline',
   },
   ATTRIBUTES: {
     FORMAT: 'data-format',
@@ -904,7 +1024,7 @@ export const DATEPICKER = {
     PLACEMENT: 'data-placement',
     CLEARABLE: 'data-clearable',
     SHOW_TODAY: 'data-show-today-button',
-    SHOW_WEEK_NUMBERS: 'data-show-week-numbers'
+    SHOW_WEEK_NUMBERS: 'data-show-week-numbers',
   },
   DEFAULTS: {
     FORMAT: 'MM/dd/yyyy',
@@ -912,6 +1032,19 @@ export const DATEPICKER = {
     CLEARABLE: true,
     SHOW_TODAY_BUTTON: true,
     SHOW_WEEK_NUMBERS: false,
-    INLINE: false
-  }
+    INLINE: false,
+  },
+};
+
+/**
+ * PhotoViewer component constants
+ */
+export const PHOTOVIEWER = {
+  SELECTOR: '.c-photo-viewer',
+  CLASS: 'c-photo-viewer',
+  DEFAULTS: {
+    startIndex: 0,
+    zoomLevel: 1,
+    fullscreen: false,
+  },
 };

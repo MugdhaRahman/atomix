@@ -1,22 +1,47 @@
 import React, { ReactNode, useId } from 'react';
 import { ACCORDION } from '../../lib/constants/components';
 import { useAccordion } from '../../lib/composables/useAccordion';
-import { AccordionProps as AccordionPropsType } from '../../lib/types/components';
+import { BaseComponentProps, IconPosition } from '../../lib/types/components';
 
 /**
  * Accordion component for showing/hiding content panels
- * @see AccordionProps in types/components.ts
  */
-export type AccordionProps = AccordionPropsType & {
+export interface AccordionProps extends BaseComponentProps {
+  /**
+   * Title of the accordion
+   */
+  title: string;
+
+  /**
+   * Content to be shown when accordion is expanded
+   */
+  children: ReactNode;
+
+  /**
+   * Whether the accordion is initially open
+   */
+  defaultOpen?: boolean;
+
+  /**
+   * Position of the icon (right or left)
+   */
+  iconPosition?: IconPosition;
+
+  /**
+   * Custom icon for the accordion
+   */
+  icon?: ReactNode;
+
   /**
    * Controlled open state (overrides defaultOpen)
    */
   isOpen?: boolean;
+
   /**
    * Callback when open state changes (for controlled mode)
    */
   onOpenChange?: (open: boolean) => void;
-};
+}
 
 export const Accordion: React.FC<AccordionProps> = ({
   title,
@@ -42,19 +67,29 @@ export const Accordion: React.FC<AccordionProps> = ({
     panelRef,
     contentRef,
     generateClassNames,
-    generateHeaderClassNames
+    generateHeaderClassNames,
   } = useAccordion({
     defaultOpen,
     disabled,
     iconPosition,
     isOpen: controlledOpen,
-    onOpenChange
+    onOpenChange,
   });
 
   // Default icon
   const defaultIcon = (
     <i className="c-accordion__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <polyline points="6 9 12 15 18 9"></polyline>
       </svg>
     </i>
@@ -87,4 +122,10 @@ export const Accordion: React.FC<AccordionProps> = ({
       </div>
     </div>
   );
-}; 
+};
+
+// Set display name for debugging
+Accordion.displayName = 'Accordion';
+
+// Export as default
+export default Accordion;
